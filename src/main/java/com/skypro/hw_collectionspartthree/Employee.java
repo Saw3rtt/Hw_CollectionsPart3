@@ -6,25 +6,35 @@ public class Employee {
 
     private String firstName;
     private String surName;
+    private int department;
+    private double salary;
 
-    public Employee(String firstName, String surName) {
+    public Employee(String firstName, String surName, int department, double salary) {
         this.firstName = firstName;
         this.surName = surName;
+        this.department = department;
+        this.salary = salary;
     }
 
     @Override
     public String toString() {
-        return "Employee " +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + surName + '\'';
+        return "Employee " + "firstName='" + firstName + '\'' + ", lastName='" + surName + '\'';
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public String getLastName() {
+    public String getSurName() {
         return surName;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public double getSalary() {
+        return salary;
     }
 
     @Override
