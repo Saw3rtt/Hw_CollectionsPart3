@@ -20,14 +20,16 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Employee searchMaxSalaryEmployee(int department) {
-        return employeeService.searchAll().stream().filter(employee -> employee.getDepartment() == department)
+        return employeeService.searchAll().stream()
+                .filter(employee -> employee.getDepartment() == department)
                 .max(Comparator.comparingDouble(employee -> employee.getSalary())).orElseThrow(() ->
                         new EmployeeNotFoundException("Нет сотрудников"));
     }
 
     @Override
     public Employee searchMinSalaryEmployee(int department) {
-        return employeeService.searchAll().stream().filter(employee -> employee.getDepartment() == department)
+        return employeeService.searchAll().stream()
+                .filter(employee -> employee.getDepartment() == department)
                 .min(Comparator.comparingDouble(employee -> employee.getSalary())).orElseThrow(() ->
                         new EmployeeNotFoundException("Нет сотрудников"));
     }
@@ -35,13 +37,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Collection<Employee> searchAllEmployees(int department) {
-        return employeeService.searchAll().stream().filter(employee -> employee.getDepartment() == department)
+        return employeeService.searchAll().stream()
+                .filter(employee -> employee.getDepartment() == department)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Map<Integer, List<Employee>> getAllGroupingByDepartment() {
+    public Map<Integer, List<Employee>> getAllGroupingByDepartment(int departament) {
         return employeeService.searchAll().stream()
                 .collect(Collectors.groupingBy(employee -> employee.getDepartment()));
     }
 }
+
