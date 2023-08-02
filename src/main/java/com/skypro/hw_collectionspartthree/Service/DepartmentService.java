@@ -13,6 +13,6 @@ public interface DepartmentService {
 
     Collection<Employee> searchAllEmployees(int department);
 
-    Map<Integer, List<Employee>> getAllGroupingByDepartment(int departament);
+    Map<Integer, List<Employee>> getAllGroupingByDepartment();
     
 }

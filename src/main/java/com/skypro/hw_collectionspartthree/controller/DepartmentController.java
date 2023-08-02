@@ -2,10 +2,7 @@ package com.skypro.hw_collectionspartthree.controller;
 
 import com.skypro.hw_collectionspartthree.Employee;
 import com.skypro.hw_collectionspartthree.Service.DepartmentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,16 +16,24 @@ public class DepartmentController {
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
+
     @GetMapping("/max-salary")
-    public Employee searchMaxSalaryEmployee(@RequestParam int department){
+    public Employee searchMaxSalaryEmployee(@RequestParam int department) {
         return departmentService.searchMaxSalaryEmployee(department);
     }
+
     @GetMapping("/min-salary")
-    public Employee searchMinSalaryEmployee(@RequestParam int department){
-        return departmentService.searchMaxSalaryEmployee(department);
+    public Employee searchMinSalaryEmployee(@RequestParam int department) {
+        return departmentService.searchMinSalaryEmployee(department);
     }
-    @GetMapping ("/all-grouping")
-    public Map <Integer, List<Employee>> getAllGroupingByDepartment(@RequestParam int department){
-        return departmentService.getAllGroupingByDepartment(department);
+
+    @GetMapping("/all/{department}")
+    public Collection<Employee> searchAllEmployees(@PathVariable("department") int department) {
+        return departmentService.searchAllEmployees(department);
+    }
+
+    @GetMapping("/all")
+    public Map<Integer, List<Employee>> getAllGroupingByDepartment() {
+        return departmentService.getAllGroupingByDepartment();
     }
 }
