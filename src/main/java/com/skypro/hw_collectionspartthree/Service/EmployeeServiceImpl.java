@@ -4,6 +4,7 @@ import com.skypro.hw_collectionspartthree.Employee;
 import com.skypro.hw_collectionspartthree.exceptions.EmployeeAlreadyAddedException;
 import com.skypro.hw_collectionspartthree.exceptions.EmployeeNotFoundException;
 import com.skypro.hw_collectionspartthree.exceptions.EmployeeStorageFullException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -22,7 +23,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeMap.size() == EMPLOYEE_MAX) {
             throw new EmployeeStorageFullException("Превышен лимит количества сотрудников в фирме");
         }
-        Employee employee = new Employee(firstName, surName, department, salary);
+        Employee employee = new Employee(StringUtils.capitalize(firstName), StringUtils.capitalize (surName),
+                department, salary);
         if (employeeMap.containsKey(firstName + surName)) {
             throw new EmployeeAlreadyAddedException("Уже есть такой сотрудник");
         }
